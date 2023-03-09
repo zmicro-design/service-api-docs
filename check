@@ -1,0 +1,38 @@
+#!/bin/bash
+
+service::config_set() {
+  config::check_or_set $1 $2 $SERVICE_CONFIG "${@:3}"
+}
+
+check() {
+  if [ "$DEBUG" = "true" ]; then
+    log::info "[DEBUG][service]: $SERVICE_CONFIG"
+    cat $SERVICE_CONFIG
+  fi
+
+  service::config_set SERVICE_API_DOCS_ROOT_URL text
+  
+  service::config_set SERVICE_API_DOCS_ADMIN_EMAIL text
+
+  service::config_set SERVICE_API_DOCS_DB_HOST text
+  service::config_set SERVICE_API_DOCS_DB_PORT text
+  service::config_set SERVICE_API_DOCS_DB_USER text
+  service::config_set SERVICE_API_DOCS_DB_PASS text
+  service::config_set SERVICE_API_DOCS_DB_NAME text
+
+  service::config_set SERVICE_API_DOCS_MAIL_HOST text
+  service::config_set SERVICE_API_DOCS_MAIL_PORT text
+  service::config_set SERVICE_API_DOCS_MAIL_USER text
+  service::config_set SERVICE_API_DOCS_MAIL_PASS text
+
+  service::config_set SERVICE_API_DOCS_DB_NAME text
+
+  service::config_set SERVICE_API_DOCS_OSS_REGION text
+  service::config_set SERVICE_API_DOCS_DOREAMON_ONLY "yesno"
+  if [ "$SERVICE_API_DOCS_DOREAMON_ONLY" = "true" ]; then
+    service::config_set SERVICE_API_DOCS_DOREAMON_CLIENT_ID text
+    service::config_set SERVICE_API_DOCS_DOREAMON_CLIENT_SECRET text
+  fi
+}
+
+check $@

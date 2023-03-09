@@ -25,9 +25,6 @@ check() {
   service::config_set SERVICE_API_DOCS_MAIL_USER text
   service::config_set SERVICE_API_DOCS_MAIL_PASS text
 
-  service::config_set SERVICE_API_DOCS_DB_NAME text
-
-  service::config_set SERVICE_API_DOCS_OSS_REGION text
   service::config_set SERVICE_API_DOCS_DOREAMON_ONLY "yesno"
   if [ "$SERVICE_API_DOCS_DOREAMON_ONLY" = "true" ]; then
     service::config_set SERVICE_API_DOCS_DOREAMON_CLIENT_ID text
